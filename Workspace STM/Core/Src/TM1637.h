@@ -7,7 +7,7 @@
 
 #ifndef TM1637_H_
 #define TM1637_H_
-#include "stm32g0xx_hal.h"
+#include "stm32f1xx_hal.h"
 
 void TM1637_Init(void);
 void TM1637_Demo(void);

@@ -17,7 +17,7 @@ and to permit persons to whom the Software is furnished to do so, subject to the
 #include "main.h"
 //#include "gpio.h"
 
-#include "stm32g0xx_hal.h"
+#include "stm32f1xx_hal.h"
 
 const char segmentMap[] = {
     0x3f, 0x06, 0x5b, 0x4f, 0x66, 0x6d, 0x7d, 0x07, // 0-7
