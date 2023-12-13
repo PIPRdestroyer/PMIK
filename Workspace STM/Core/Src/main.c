@@ -91,13 +91,14 @@ int main(void)
   MX_USART2_UART_Init();
   MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
-
+  TM1637_SetBrightness(7);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  TM1637_Demo();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
