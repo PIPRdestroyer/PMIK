@@ -60,8 +60,8 @@ all: main-build
 main-build: Projekt_PMIK.elf secondary-outputs
 
 # Tool invocations
-Projekt_PMIK.elf Projekt_PMIK.map: $(OBJS) $(USER_OBJS) /Users/macbookproa/Documents/GitHub/PMIK/Workspace\ STM/STM32F103RBTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "Projekt_PMIK.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"/Users/macbookproa/Documents/GitHub/PMIK/Workspace STM/STM32F103RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Projekt_PMIK.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Projekt_PMIK.elf Projekt_PMIK.map: $(OBJS) $(USER_OBJS) C:\PMIK\Workspace\ STM\STM32F103RBTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "Projekt_PMIK.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\PMIK\Workspace STM\STM32F103RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Projekt_PMIK.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

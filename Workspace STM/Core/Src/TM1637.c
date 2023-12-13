@@ -47,23 +47,11 @@ void TM1637_DataLow(void)
 
 void TM1637_Demo(void)
 {
-	uint8_t i = 0;
-
-	TM1637_Init();
-	TM1637_SetBrightness(8);
-
+	uint32_t i = 0;
 	while(1){
 		TM1637_DisplayDecimal(i++, 0);
 	}
 }
-
-
-void TM1637_Init(void)
-{
-	MX_GPIO_Init();
-    TM1637_SetBrightness(8);
-}
-
 
 void TM1637_DisplayDecimal(int v, int displaySeparator)
 {
