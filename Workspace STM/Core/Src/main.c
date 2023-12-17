@@ -104,16 +104,25 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  uint8_t num = EEPROM_Read_NUM(2, 0);
-	  if (num==0)
-	  {
-		  HAL_Delay(10);
-	  } else {
-		  TM1637_DisplayDecimal(num, 0);
-		  num +=1;
-		  EEPROM_Write_NUM(2, 0, num);
-		  HAL_Delay(1000);
-	  }
+//	  uint8_t num = EEPROM_Read_NUM(2, 0);
+//	  if (num==0)
+//	  {
+//		  HAL_Delay(10);
+//	  } else {
+//		  TM1637_DisplayDecimal(num, 0);
+//		  num +=1;
+//		  EEPROM_Write_NUM(2, 0, num);
+	  uint8_t num1, num2, num3, num4;
+	  EEPROM_Write_NUM(2, 0, 1);
+	  EEPROM_Write_NUM(2, 1, 123);
+	  EEPROM_Write_NUM(2, 2, 258);
+	  EEPROM_Write_NUM(2, 3, 250);
+	  num1 = EEPROM_Read_NUM(2, 0);
+	  num2 = EEPROM_Read_NUM(2, 1);
+	  num3 = EEPROM_Read_NUM(2, 2);
+	  num4 = EEPROM_Read_NUM(2, 3);
+//		  HAL_Delay(1000);
+//	  }
 
 
     /* USER CODE END WHILE */

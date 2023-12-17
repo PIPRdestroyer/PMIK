@@ -1,4 +1,4 @@
-Core/Src/TM1637.o: ../Core/Src/TM1637.c ../Core/Src/TM1637.h \
+Core/Src/TM1637.o: ../Core/Src/TM1637.c ../Core/Inc/TM1637.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h \
  ../Core/Inc/stm32f1xx_hal_conf.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h \
@@ -24,7 +24,7 @@ Core/Src/TM1637.o: ../Core/Src/TM1637.c ../Core/Src/TM1637.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h \
  ../Core/Inc/main.h
-../Core/Src/TM1637.h:
+../Core/Inc/TM1637.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:
 ../Core/Inc/stm32f1xx_hal_conf.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h:
