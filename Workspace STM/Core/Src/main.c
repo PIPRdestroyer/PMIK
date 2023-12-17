@@ -25,6 +25,9 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "TM1637.h"
+#include "EEPROM.h"
+
+
 
 /* USER CODE END Includes */
 
@@ -57,6 +60,8 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+
+#define DEV_ADDR 0xa0 //EEProm addres definition
 
 /* USER CODE END 0 */
 
@@ -91,6 +96,7 @@ int main(void)
   MX_USART2_UART_Init();
   MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
+  //EEPROM_Write_NUM(2, 0, num);
   TM1637_SetBrightness(3);
   /* USER CODE END 2 */
 
@@ -98,7 +104,18 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  TM1637_Demo();
+	  uint8_t num = EEPROM_Read_NUM(2, 0);
+	  if (num==0)
+	  {
+		  HAL_Delay(10);
+	  } else {
+		  TM1637_DisplayDecimal(num, 0);
+		  num +=1;
+		  EEPROM_Write_NUM(2, 0, num);
+		  HAL_Delay(1000);
+	  }
+
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

@@ -16,7 +16,6 @@ and to permit persons to whom the Software is furnished to do so, subject to the
 #include "TM1637.h"
 #include "main.h"
 //#include "gpio.h"
-
 #include "stm32f1xx_hal.h"
 
 const char segmentMap[] = {
