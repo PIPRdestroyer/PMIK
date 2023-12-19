@@ -68,15 +68,17 @@ void Error_Handler(void);
 #define LD2_GPIO_Port GPIOA
 #define DATA_Pin GPIO_PIN_0
 #define DATA_GPIO_Port GPIOB
-#define B2_Pin GPIO_PIN_10
-#define B2_GPIO_Port GPIOB
-#define B2_EXTI_IRQn EXTI15_10_IRQn
 #define CLK_Pin GPIO_PIN_7
 #define CLK_GPIO_Port GPIOC
+#define B2_Pin GPIO_PIN_10
+#define B2_GPIO_Port GPIOA
+#define B2_EXTI_IRQn EXTI15_10_IRQn
 #define TMS_Pin GPIO_PIN_13
 #define TMS_GPIO_Port GPIOA
 #define TCK_Pin GPIO_PIN_14
 #define TCK_GPIO_Port GPIOA
+#define TOF_XSHUT_Pin GPIO_PIN_15
+#define TOF_XSHUT_GPIO_Port GPIOA
 #define SWO_Pin GPIO_PIN_3
 #define SWO_GPIO_Port GPIOB
 
