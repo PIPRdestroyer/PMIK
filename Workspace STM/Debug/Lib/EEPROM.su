@@ -1,8 +1,8 @@
-../Lib/EEPROM.c:41:10:bytestowrite	16	static
-../Lib/EEPROM.c:53:6:EEPROM_Write	64	static
-../Lib/EEPROM.c:87:6:float2Bytes	24	static
-../Lib/EEPROM.c:102:7:Bytes2float	32	static
-../Lib/EEPROM.c:124:6:EEPROM_Write_NUM	16	static
-../Lib/EEPROM.c:138:7:EEPROM_Read_NUM	24	static
-../Lib/EEPROM.c:153:6:EEPROM_Read	64	static
-../Lib/EEPROM.c:179:6:EEPROM_PageErase	104	static
+../Lib/EEPROM.c:40:10:bytestowrite	16	static
+../Lib/EEPROM.c:52:6:EEPROM_Write	64	static
+../Lib/EEPROM.c:86:6:float2Bytes	24	static
+../Lib/EEPROM.c:101:7:Bytes2float	32	static
+../Lib/EEPROM.c:123:6:EEPROM_Write_NUM	16	static
+../Lib/EEPROM.c:137:7:EEPROM_Read_NUM	24	static
+../Lib/EEPROM.c:152:6:EEPROM_Read	64	static
+../Lib/EEPROM.c:178:6:EEPROM_PageErase	104	static

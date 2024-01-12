@@ -1,8 +1,8 @@
-../Lib/EEPROM.c:41:10:bytestowrite	2
-../Lib/EEPROM.c:53:6:EEPROM_Write	3
-../Lib/EEPROM.c:87:6:float2Bytes	2
-../Lib/EEPROM.c:102:7:Bytes2float	2
-../Lib/EEPROM.c:124:6:EEPROM_Write_NUM	1
-../Lib/EEPROM.c:138:7:EEPROM_Read_NUM	1
-../Lib/EEPROM.c:153:6:EEPROM_Read	3
-../Lib/EEPROM.c:179:6:EEPROM_PageErase	1
+../Lib/EEPROM.c:40:10:bytestowrite	2
+../Lib/EEPROM.c:52:6:EEPROM_Write	3
+../Lib/EEPROM.c:86:6:float2Bytes	2
+../Lib/EEPROM.c:101:7:Bytes2float	2
+../Lib/EEPROM.c:123:6:EEPROM_Write_NUM	1
+../Lib/EEPROM.c:137:7:EEPROM_Read_NUM	1
+../Lib/EEPROM.c:152:6:EEPROM_Read	3
+../Lib/EEPROM.c:178:6:EEPROM_PageErase	1

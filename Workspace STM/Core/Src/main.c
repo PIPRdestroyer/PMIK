@@ -63,8 +63,6 @@ void SystemClock_Config(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-#define DEV_ADDR 0xa0 //EEProm addres definition
-
 /* USER CODE END 0 */
 
 /**
@@ -100,63 +98,21 @@ int main(void)
   MX_I2C2_Init();
   MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
-  TM1637_SetBrightness(3);
-  VL53_init();
-  HAL_TIM_Base_Start_IT(&htim1);
+  peripherialsInit();
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  uint16_t Measure;
-  uint16_t Measure_EEPROM;
   while (1)
   {
-	  switch(status)
-	  {
-	  	  case 1:
-	  		  break;
-	  	  case 2:
-	  		  break;
-	  	  //save to EEPROM
-	  	  case 3:
-	  		  EEPROM_Write_NUM(3, 0, Measure);
-	  		  Measure_EEPROM = EEPROM_Read_NUM(3, 0);
-	  		  status = 0;
-	  		  break;
-	  	  //display
-	  	  case 4:
-	  		  if(mode == 0)
-	  		  {
-	  			TM1637_DisplayDecimal(Measure, 0);
-	  		  }
-	  		  else if(mode == 1)
-			  {
-				TM1637_DisplayDecimal(Measure_EEPROM, 0);
-			  }
-	  		  status = 0;
-	  		  break;
-	  	  //measure
-	  	  default:
-
-	  		//measure if data is ready
-	  		if(TofDataRead == 1)
-			  {
-				Measure = VL53_MEASURE();
-				TofDataRead = 0;
-			  }
-
-	  		//data limit
-			if (Measure > 1250)
-			  {
-				  Measure = 1250;
-			  }
+	  Compute(1,2);
 	  }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
-}
+
 
 /**
   * @brief System Clock Configuration
