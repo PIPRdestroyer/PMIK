@@ -61,6 +61,7 @@ NVIC.TIM1_BRK_IRQn=true\:0\:0\:false\:false\:true\:true\:true\:true
 NVIC.TIM1_CC_IRQn=true\:0\:0\:false\:false\:true\:true\:true\:true
 NVIC.TIM1_TRG_COM_IRQn=true\:0\:0\:false\:false\:true\:true\:true\:true
 NVIC.TIM1_UP_IRQn=true\:0\:0\:false\:false\:true\:true\:true\:true
+NVIC.USART2_IRQn=true\:0\:0\:false\:false\:true\:true\:true\:true
 NVIC.UsageFault_IRQn=true\:0\:0\:false\:false\:true\:true\:false\:false
 PA10.GPIOParameters=GPIO_PuPd,GPIO_Label,GPIO_ModeDefaultEXTI
 PA10.GPIO_Label=B2 [Mode]

@@ -4,7 +4,8 @@
 extern uint8_t status;
 extern uint8_t mode;
 extern uint8_t TofDataRead;
-
+extern uint8_t znak;
+extern uint8_t komunikat[20];
 
 void peripherialsInit(void);
 void switchMode(void);

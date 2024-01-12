@@ -6,12 +6,15 @@
 #include "EEPROM.h"
 #include "VL53_API_Interface.h"
 #include "tim.h"
+#include "usart.h"
 
 
 uint8_t status = 0;
 uint8_t mode = 0; // 0 single 1 cont
 uint8_t TofDataRead = 0;
 uint16_t Measure = 0;
+uint8_t znak;
+uint8_t komunikat[20];
 
 uint8_t state_flag[3] = {0, 0, 0}; // variable that tells if the full cycle of measurement was finnished
 //full cycle is considered as finnished when state_flag = {1, 1, 1} after cycle they will be reseted to 0
@@ -22,6 +25,7 @@ void peripherialsInit()
   TM1637_SetBrightness(3);
   VL53_init();
   HAL_TIM_Base_Start_IT(&htim1);
+  HAL_UART_Receive_IT(&huart2, &znak, 1);
 }
 
 void switchMode()
@@ -173,6 +177,27 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 	}
 }
 
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+	if(huart->Instance == USART2)
+	{
+		uint16_t dl_kom;
+		if(znak == 'e')
+		{
+			dl_kom = sprintf((char *)komunikat, "First data\n");
+		}
+		else if(znak == 'd')
+		{
+			dl_kom = sprintf((char *)komunikat, "Another data\n");
+		}
+		else
+		{
+			dl_kom = sprintf((char *)komunikat, "Wrong char\n");
+		}
+		HAL_UART_Transmit_IT(&huart2, komunikat, dl_kom);
+		HAL_UART_Receive_IT(&huart2, &znak, 1);
+	}
+}
 
 /*
  * status = 1 measure
