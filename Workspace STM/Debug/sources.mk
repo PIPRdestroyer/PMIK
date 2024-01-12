@@ -27,4 +27,5 @@ Core/Startup \
 Drivers/STM32F1xx_HAL_Driver/Src \
 Drivers/VL53L0X/core/src \
 Drivers/VL53L0X/platform/src \
+Lib \
 

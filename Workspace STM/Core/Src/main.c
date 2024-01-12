@@ -24,9 +24,10 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "TM1637.h"
-#include "EEPROM.h"
-#include "VL53_API_Interface.h"
+#include "../../Lib/TM1637.h"
+#include "../../Lib/EEPROM.h"
+#include "../../Lib/VL53_API_Interface.h"
+#include "../../Lib/Handler.h"
 
 
 /* USER CODE END Includes */
