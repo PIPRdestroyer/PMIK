@@ -19,14 +19,16 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "i2c.h"
+#include "tim.h"
 #include "usart.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "TM1637.h"
-#include "EEPROM.h"
-#include "VL53_API_Interface.h"
+#include "../../Lib/TM1637.h"
+#include "../../Lib/EEPROM.h"
+#include "../../Lib/VL53_API_Interface.h"
+#include "../../Lib/Handler.h"
 
 
 /* USER CODE END Includes */
@@ -62,7 +64,8 @@ void SystemClock_Config(void);
 /* USER CODE BEGIN 0 */
 
 #define DEV_ADDR 0xa0 //EEProm addres definition
-
+uint8_t status = 0;
+uint8_t mode = 0;
 /* USER CODE END 0 */
 
 /**
@@ -96,22 +99,59 @@ int main(void)
   MX_USART2_UART_Init();
   MX_I2C1_Init();
   MX_I2C2_Init();
+  MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
   TM1637_SetBrightness(3);
   VL53_init();
+  HAL_TIM_Base_Start_IT(&htim1);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   uint16_t Measure;
+  uint16_t Measure_EEPROM;
   while (1)
   {
-	  if(TofDataRead == 1)
-		  {
-			Measure = VL53_MEASURE();
-			TofDataRead = 0;
-		  }
-	  TM1637_DisplayDecimal(Measure, 0);
+	  switch(status)
+	  {
+	  	  case 1:
+	  		  break;
+	  	  case 2:
+	  		  break;
+	  	  //save to EEPROM
+	  	  case 3:
+	  		  EEPROM_Write_NUM(3, 0, Measure);
+	  		  Measure_EEPROM = EEPROM_Read_NUM(3, 0);
+	  		  status = 0;
+	  		  break;
+	  	  //display
+	  	  case 4:
+	  		  if(mode == 0)
+	  		  {
+	  			TM1637_DisplayDecimal(Measure, 0);
+	  		  }
+	  		  else if(mode == 1)
+			  {
+				TM1637_DisplayDecimal(Measure_EEPROM, 0);
+			  }
+	  		  status = 0;
+	  		  break;
+	  	  //measure
+	  	  default:
+
+	  		//measure if data is ready
+	  		if(TofDataRead == 1)
+			  {
+				Measure = VL53_MEASURE();
+				TofDataRead = 0;
+			  }
+
+	  		//data limit
+			if (Measure > 1250)
+			  {
+				  Measure = 1250;
+			  }
+	  }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -160,10 +200,39 @@ void SystemClock_Config(void)
 /* USER CODE BEGIN 4 */
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
+	//save button
+	if (GPIO_Pin == B2_Pin)
+	{
+		HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_SET);
+		status = 3;
+	}
+	//change state button
+	if (GPIO_Pin == B1_Pin)
+	{
+		HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_RESET);
+		if(mode == 0)
+		{
+			mode = 1;
+		}
+		else
+		{
+			mode = 0;
+		}
+
+	}
 	if(GPIO_Pin == TOF_INT_Pin)
 	{
 		VL53_CLEAR_INTERRUPT_DATA();
 		TofDataRead = 1;
+	}
+}
+
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+	if(htim->Instance == TIM1)
+	{
+		HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
+		status = 4;
 	}
 }
 /* USER CODE END 4 */

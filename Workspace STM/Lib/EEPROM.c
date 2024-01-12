@@ -22,8 +22,8 @@
 #include "string.h"
 
 // Define the I2C
-extern I2C_HandleTypeDef hi2c1;
-#define EEPROM_I2C &hi2c1
+extern I2C_HandleTypeDef hi2c2;
+#define EEPROM_I2C &hi2c2
 
 // EEPROM ADDRESS (8bits)
 #define EEPROM_ADDR 0xA0
