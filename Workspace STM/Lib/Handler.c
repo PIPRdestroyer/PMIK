@@ -3,12 +3,13 @@
 #define EEPROM_OFFSET 1
 
 #include "Handler.h"
-#include "main.h"
 #include "TM1637.h"
 #include "EEPROM.h"
 #include "VL53_API_Interface.h"
 
-
+uint8_t status = 0;
+uint8_t mode = 0;
+uint8_t TofDataRead = 0;
 
 uint8_t state = 0;
 uint8_t state_flag[3] = {0, 0, 0}; // variable that tells if the full cycle of measurement was finnished
@@ -76,4 +77,42 @@ void saveToMem(uint8_t distance)
 {
 	EEPROM_Write_NUM(EEPROM_PAGE, EEPROM_OFFSET, distance);
 	state_flag[1] = 1; //Change temporary progress flag to 1 (1 = task done)
+}
+
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+	//save button
+	if (GPIO_Pin == B2_Pin)
+	{
+		HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_SET);
+		status = 3;
+	}
+	//change state button
+	if (GPIO_Pin == B1_Pin)
+	{
+		HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_RESET);
+		if(mode == 0)
+		{
+			mode = 1;
+		}
+		else
+		{
+			mode = 0;
+		}
+
+	}
+	if(GPIO_Pin == TOF_INT_Pin)
+	{
+		VL53_CLEAR_INTERRUPT_DATA();
+		TofDataRead = 1;
+	}
+}
+
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+	if(htim->Instance == TIM1)
+	{
+		HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
+		status = 4;
+	}
 }

@@ -1,7 +1,9 @@
-../Lib/Handler.c:18:6:switchState	1
-../Lib/Handler.c:24:6:distanceMeasure	4
-../Lib/Handler.c:38:6:cycleBegin	1
-../Lib/Handler.c:46:6:cycleEnd	2
-../Lib/Handler.c:59:5:readDistance	1
-../Lib/Handler.c:69:6:Display	1
-../Lib/Handler.c:75:6:saveToMem	1
+../Lib/Handler.c:19:6:switchState	1
+../Lib/Handler.c:25:6:distanceMeasure	4
+../Lib/Handler.c:39:6:cycleBegin	1
+../Lib/Handler.c:47:6:cycleEnd	2
+../Lib/Handler.c:60:5:readDistance	1
+../Lib/Handler.c:70:6:Display	1
+../Lib/Handler.c:76:6:saveToMem	1
+../Lib/Handler.c:82:6:HAL_GPIO_EXTI_Callback	5
+../Lib/Handler.c:111:6:HAL_TIM_PeriodElapsedCallback	2

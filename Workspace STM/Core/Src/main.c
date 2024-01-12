@@ -40,7 +40,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-uint8_t TofDataRead;
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -64,8 +64,7 @@ void SystemClock_Config(void);
 /* USER CODE BEGIN 0 */
 
 #define DEV_ADDR 0xa0 //EEProm addres definition
-uint8_t status = 0;
-uint8_t mode = 0;
+
 /* USER CODE END 0 */
 
 /**
@@ -198,43 +197,43 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
-{
-	//save button
-	if (GPIO_Pin == B2_Pin)
-	{
-		HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_SET);
-		status = 3;
-	}
-	//change state button
-	if (GPIO_Pin == B1_Pin)
-	{
-		HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_RESET);
-		if(mode == 0)
-		{
-			mode = 1;
-		}
-		else
-		{
-			mode = 0;
-		}
-
-	}
-	if(GPIO_Pin == TOF_INT_Pin)
-	{
-		VL53_CLEAR_INTERRUPT_DATA();
-		TofDataRead = 1;
-	}
-}
-
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
-{
-	if(htim->Instance == TIM1)
-	{
-		HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
-		status = 4;
-	}
-}
+//void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+//{
+//	//save button
+//	if (GPIO_Pin == B2_Pin)
+//	{
+//		HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_SET);
+//		status = 3;
+//	}
+//	//change state button
+//	if (GPIO_Pin == B1_Pin)
+//	{
+//		HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_RESET);
+//		if(mode == 0)
+//		{
+//			mode = 1;
+//		}
+//		else
+//		{
+//			mode = 0;
+//		}
+//
+//	}
+//	if(GPIO_Pin == TOF_INT_Pin)
+//	{
+//		VL53_CLEAR_INTERRUPT_DATA();
+//		TofDataRead = 1;
+//	}
+//}
+//
+//void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+//{
+//	if(htim->Instance == TIM1)
+//	{
+//		HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
+//		status = 4;
+//	}
+//}
 /* USER CODE END 4 */
 
 /**

@@ -1,7 +1,9 @@
-../Lib/Handler.c:18:6:switchState	4	static
-../Lib/Handler.c:24:6:distanceMeasure	24	static
-../Lib/Handler.c:38:6:cycleBegin	16	static
-../Lib/Handler.c:46:6:cycleEnd	16	static
-../Lib/Handler.c:59:5:readDistance	16	static
-../Lib/Handler.c:69:6:Display	16	static
-../Lib/Handler.c:75:6:saveToMem	16	static
+../Lib/Handler.c:19:6:switchState	4	static
+../Lib/Handler.c:25:6:distanceMeasure	24	static
+../Lib/Handler.c:39:6:cycleBegin	16	static
+../Lib/Handler.c:47:6:cycleEnd	16	static
+../Lib/Handler.c:60:5:readDistance	16	static
+../Lib/Handler.c:70:6:Display	16	static
+../Lib/Handler.c:76:6:saveToMem	16	static
+../Lib/Handler.c:82:6:HAL_GPIO_EXTI_Callback	16	static
+../Lib/Handler.c:111:6:HAL_TIM_PeriodElapsedCallback	16	static
