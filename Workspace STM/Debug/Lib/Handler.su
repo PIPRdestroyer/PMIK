@@ -2,9 +2,9 @@
 ../Lib/Handler.c:27:6:switchMode	4	static
 ../Lib/Handler.c:40:6:Compute	16	static
 ../Lib/Handler.c:68:6:singleMode	16	static
-../Lib/Handler.c:85:6:continuousMode	24	static
-../Lib/Handler.c:125:6:readMeasure	8	static
-../Lib/Handler.c:142:6:Display	16	static
-../Lib/Handler.c:148:6:saveToMem	16	static
-../Lib/Handler.c:154:6:HAL_GPIO_EXTI_Callback	16	static
-../Lib/Handler.c:176:6:HAL_TIM_PeriodElapsedCallback	16	static
+../Lib/Handler.c:77:6:continuousMode	16	static
+../Lib/Handler.c:116:6:readMeasure	8	static
+../Lib/Handler.c:133:6:Display	16	static
+../Lib/Handler.c:139:6:saveToMem	16	static
+../Lib/Handler.c:145:6:HAL_GPIO_EXTI_Callback	16	static
+../Lib/Handler.c:167:6:HAL_TIM_PeriodElapsedCallback	16	static

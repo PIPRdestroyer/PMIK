@@ -105,7 +105,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  Compute(1,2);
+	  Compute(mode,status);
 	  }
     /* USER CODE END WHILE */
 

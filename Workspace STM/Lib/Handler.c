@@ -67,24 +67,15 @@ void Compute(uint8_t mode, uint8_t status)
 
 void singleMode(uint8_t status)
 {
-	if (status == 1)
-	{
-		status = 0;
-	}
-	else if (status == 2)
+	if (status == 2)
 	{
 		readMeasure();
 		Display(Measure);
 		saveToMem(Measure);
 	}
-	else if (status == 3)
-	{
-
-	}
 }
 void continuousMode(uint8_t status)
 {
-	uint16_t Measure = 0;
 	if (status == 1)
 	{
 		readMeasure();
