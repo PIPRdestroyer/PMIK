@@ -52,15 +52,15 @@ void TM1637_Demo(void)
 	}
 }
 
-void TM1637_DisplayDecimal(int v, int displaySeparator)
+void TM1637_DisplayDecimal(int num, int displaySeparator)
 {
     unsigned char digitArr[4];
     for (int i = 0; i < 4; ++i) {
-        digitArr[i] = segmentMap[v % 10];
+        digitArr[i] = segmentMap[num % 10];
         if (i == 2 && displaySeparator) {
             digitArr[i] |= 1 << 7;
         }
-        v /= 10;
+        num /= 10;
     }
 
     TM1637_Start();

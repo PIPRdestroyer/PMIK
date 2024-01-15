@@ -22,10 +22,10 @@ C_DEPS :=
 
 # Every subdirectory with source files must be described here
 SUBDIRS := \
+Core/Lib \
 Core/Src \
 Core/Startup \
 Drivers/STM32F1xx_HAL_Driver/Src \
 Drivers/VL53L0X/core/src \
 Drivers/VL53L0X/platform/src \
-Lib \
 

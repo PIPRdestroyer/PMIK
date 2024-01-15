@@ -1,0 +1,11 @@
+../Core/Lib/Handler.c:31:6:peripherialsInit	1
+../Core/Lib/Handler.c:39:6:switchMode	3
+../Core/Lib/Handler.c:52:6:Compute	3
+../Core/Lib/Handler.c:73:6:singleMode	2
+../Core/Lib/Handler.c:82:6:continuousMode	4
+../Core/Lib/Handler.c:121:6:readMeasure	3
+../Core/Lib/Handler.c:138:6:Display	1
+../Core/Lib/Handler.c:144:6:saveToMem	1
+../Core/Lib/Handler.c:150:6:HAL_GPIO_EXTI_Callback	4
+../Core/Lib/Handler.c:172:6:HAL_TIM_PeriodElapsedCallback	2
+../Core/Lib/Handler.c:181:6:HAL_UART_RxCpltCallback	4

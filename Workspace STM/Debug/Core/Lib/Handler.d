@@ -1,4 +1,4 @@
-Lib/EEPROM.o: ../Lib/EEPROM.c ../Lib/EEPROM.h \
+Core/Lib/Handler.o: ../Core/Lib/Handler.c ../Core/Lib/Handler.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h \
  ../Core/Inc/stm32f1xx_hal_conf.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h \
@@ -24,8 +24,11 @@ Lib/EEPROM.o: ../Lib/EEPROM.c ../Lib/EEPROM.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h \
- ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
-../Lib/EEPROM.h:
+ ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h \
+ ../Core/Inc/main.h ../Core/Lib/TM1637.h ../Core/Lib/EEPROM.h \
+ ../Core/Lib/VL53_API_Interface.h ../Core/Inc/tim.h ../Core/Inc/main.h \
+ ../Core/Inc/usart.h
+../Core/Lib/Handler.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:
 ../Core/Inc/stm32f1xx_hal_conf.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h:
@@ -52,3 +55,10 @@ Lib/EEPROM.o: ../Lib/EEPROM.c ../Lib/EEPROM.h \
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h:
+../Core/Inc/main.h:
+../Core/Lib/TM1637.h:
+../Core/Lib/EEPROM.h:
+../Core/Lib/VL53_API_Interface.h:
+../Core/Inc/tim.h:
+../Core/Inc/main.h:
+../Core/Inc/usart.h:

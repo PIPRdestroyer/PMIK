@@ -5,12 +5,20 @@
 #include "TM1637.h"
 #include "EEPROM.h"
 #include "VL53_API_Interface.h"
+#include "stdio.h"
 #include "tim.h"
 #include "usart.h"
 
 
-uint8_t status = 0;
-uint8_t mode = 0; // 0 single 1 cont
+
+uint8_t status = 0; //Variable that tells what interrupt is done at this moment
+/*
+ * status = 1 measure
+ * status = 2 button save
+ * status = 3 timer
+ *
+ *  */
+uint8_t mode = 0; // 0 = single 1 = continuous
 uint8_t TofDataRead = 0;
 uint16_t Measure = 0;
 uint8_t znak;
@@ -30,7 +38,7 @@ void peripherialsInit()
 
 void switchMode()
 {
-	/* Function that switches mode from 0 = single to 1 = cont*/
+	/* Function that switches mode from 0 = single to 1 = continuous*/
 	if(mode == 0)
 	{
 		mode = 1;
@@ -61,13 +69,6 @@ void Compute(uint8_t mode, uint8_t status)
 //	  		cycleEnd();
 //	  	}
 }
-
-/*
- * status = 1 measure
- * status = 2 button save
- * status = 3 timer
- *
- *  */
 
 void singleMode(uint8_t status)
 {
