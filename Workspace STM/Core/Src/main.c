@@ -97,8 +97,10 @@ int main(void)
   MX_I2C1_Init();
   MX_I2C2_Init();
   MX_TIM1_Init();
+  MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
   peripherialsInit();
+  HAL_TIM_Base_Start_IT(&htim2);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -106,13 +108,13 @@ int main(void)
   while (1)
   {
 	  Compute(mode,status);
-	  }
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
-
+}
 
 /**
   * @brief System Clock Configuration
@@ -153,43 +155,7 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-//void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
-//{
-//	//save button
-//	if (GPIO_Pin == B2_Pin)
-//	{
-//		HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_SET);
-//		status = 3;
-//	}
-//	//change state button
-//	if (GPIO_Pin == B1_Pin)
-//	{
-//		HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_RESET);
-//		if(mode == 0)
-//		{
-//			mode = 1;
-//		}
-//		else
-//		{
-//			mode = 0;
-//		}
-//
-//	}
-//	if(GPIO_Pin == TOF_INT_Pin)
-//	{
-//		VL53_CLEAR_INTERRUPT_DATA();
-//		TofDataRead = 1;
-//	}
-//}
-//
-//void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
-//{
-//	if(htim->Instance == TIM1)
-//	{
-//		HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
-//		status = 4;
-//	}
-//}
+
 /* USER CODE END 4 */
 
 /**

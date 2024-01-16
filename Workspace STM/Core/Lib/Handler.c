@@ -1,5 +1,6 @@
 #define EEPROM_PAGE 3 // Starting page in EEPROM memory
 #define EEPROM_OFFSET 1 //Starting byte in EEPROM memory
+#define RxBuf_SIZE 	 10 //Uart buffer size
 
 #include "Handler.h"
 #include "TM1637.h"
@@ -8,7 +9,7 @@
 #include "stdio.h"
 #include "tim.h"
 #include "usart.h"
-
+#include <string.h>
 
 
 uint8_t status = 0; //Variable that tells what interrupt is done at this moment
@@ -18,11 +19,11 @@ uint8_t status = 0; //Variable that tells what interrupt is done at this moment
  * status = 3 timer
  *
  *  */
+uint8_t RxBuf[RxBuf_SIZE];
 uint8_t mode = 0; // 0 = single 1 = continuous
 uint8_t TofDataRead = 0;
 uint16_t Measure = 0;
-uint8_t znak;
-uint8_t komunikat[20];
+uint8_t announcement[20];
 
 uint8_t state_flag[3] = {0, 0, 0}; // variable that tells if the full cycle of measurement was finnished
 //full cycle is considered as finnished when state_flag = {1, 1, 1} after cycle they will be reseted to 0
@@ -33,7 +34,7 @@ void peripherialsInit()
   TM1637_SetBrightness(3);
   VL53_init();
   HAL_TIM_Base_Start_IT(&htim1);
-  HAL_UART_Receive_IT(&huart2, &znak, 1);
+  HAL_UARTEx_ReceiveToIdle_IT(&huart2, RxBuf, RxBuf_SIZE);
 }
 
 void switchMode()
@@ -172,32 +173,56 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
 	if(htim->Instance == TIM1)
+		{
+			HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
+			status = 3;
+		}
+	if(htim->Instance == TIM2)
 	{
-		HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
-		status = 3;
+		char sendData[6];
+		sprintf((char*)sendData, "%u\n", Measure);
+		HAL_UART_Transmit_IT(&huart2, (uint8_t*)&sendData, strlen(sendData));
 	}
 }
 
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
 {
 	if(huart->Instance == USART2)
-	{
-		uint16_t dl_kom;
-		if(znak == 'e')
 		{
-			dl_kom = sprintf((char *)komunikat, "First data\n");
+			if (strcmp((char*)RxBuf, "info") == 0)
+			{
+				sprintf((char *)announcement, "Device ID:3421\n");
+			}
+			else if (strcmp((char*)RxBuf, "measure") == 0)
+			{
+				sprintf((char *)announcement, "Measure: %u\n", Measure);
+			}
+			else
+			{
+				sprintf((char *)announcement, "Wrong command\n");
+			}
+			HAL_UARTEx_ReceiveToIdle_IT(&huart2, RxBuf, RxBuf_SIZE);
+			HAL_UART_Transmit_IT(&huart2, announcement, strlen(announcement));
+			memset(RxBuf, 0, RxBuf_SIZE);
 		}
-		else if(znak == 'd')
-		{
-			dl_kom = sprintf((char *)komunikat, "Another data\n");
-		}
-		else
-		{
-			dl_kom = sprintf((char *)komunikat, "Wrong char\n");
-		}
-		HAL_UART_Transmit_IT(&huart2, komunikat, dl_kom);
-		HAL_UART_Receive_IT(&huart2, &znak, 1);
-	}
+//	if(huart->Instance == USART2)
+//	{
+//		uint16_t dl_kom;
+//		if(znak == 'e')
+//		{
+//			dl_kom = sprintf((char *)komunikat, "First data\n");
+//		}
+//		else if(znak == 'd')
+//		{
+//			dl_kom = sprintf((char *)komunikat, "Another data\n");
+//		}
+//		else
+//		{
+//			dl_kom = sprintf((char *)komunikat, "Wrong char\n");
+//		}
+//		HAL_UART_Transmit_IT(&huart2, komunikat, dl_kom);
+//		HAL_UART_Receive_IT(&huart2, &znak, 1);
+//	}
 }
 
 /*

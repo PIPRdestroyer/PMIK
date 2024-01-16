@@ -14,8 +14,7 @@
 extern uint8_t status;
 extern uint8_t mode;
 extern uint8_t TofDataRead;
-extern uint8_t znak;
-extern uint8_t komunikat[20];
+extern uint8_t announcement[20];
 
 /**
  * @brief Function initializes all components (range finder, display, timers and uart)
@@ -94,4 +93,4 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim);
  *
  * @param measure Distance returned from range finder
  */
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart);
+void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size);
