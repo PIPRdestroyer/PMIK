@@ -17,6 +17,11 @@ extern uint8_t TofDataRead;
 extern uint8_t announcement[20];
 
 /**
+ * @brief Function initializes uart and timers settings
+ */
+void hardwareInit(void);
+
+/**
  * @brief Function initializes all components (range finder, display, timers and uart)
  */
 void peripherialsInit(void);

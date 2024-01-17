@@ -29,11 +29,21 @@ uint8_t state_flag[3] = {0, 0, 0}; // variable that tells if the full cycle of m
 //full cycle is considered as finnished when state_flag = {1, 1, 1} after cycle they will be reseted to 0
 // {0,0,0} <==> {measurement, write to EEPROM, display}
 
+void hardwareInit()
+{
+  huart2.Init.BaudRate = 115200;
+  htim1.Init.Prescaler = 6399;
+  htim1.Init.Period = 9999;
+  htim2.Init.Prescaler = 63999;
+  htim2.Init.Period = 9999;
+}
+
 void peripherialsInit()
 {
   TM1637_SetBrightness(3);
   VL53_init();
   HAL_TIM_Base_Start_IT(&htim1);
+  HAL_TIM_Base_Start_IT(&htim2);
   HAL_UARTEx_ReceiveToIdle_IT(&huart2, RxBuf, RxBuf_SIZE);
 }
 
@@ -60,15 +70,6 @@ void Compute(uint8_t mode, uint8_t status)
 	{
 		continuousMode(status);
 	}
-//	for(int i = 0;i<3;i++)
-//	  	if (state_flag[i] == 0)
-//	  	{
-//	  		cycleBegin(status);
-//	  	}
-//	  	else if (state_flag[i] == 1)
-//	  	{
-//	  		cycleEnd();
-//	  	}
 }
 
 void singleMode(uint8_t status)
@@ -95,29 +96,6 @@ void continuousMode(uint8_t status)
 		Display(Measure);
 	}
 }
-
-
-
-//void cycleBegin()
-//{
-//	/*Function that starts the measurement cycle*/
-//	uint16_t Measure = readMeasure();
-//	saveToMem(Measure);
-//	Display(Measure);
-//}
-//
-//void cycleEnd()
-//{
-//	/*Function that resets progress flags. It is called after end of sequence:
-//	 * 1. readMeasure
-//	 * 2. saveToMem
-//	 * 3. Display
-//	 */
-//	for(int i = 0;i<3;i++)
-//	{
-//		state_flag[i] = 0;
-//	}
-//}
 
 void readMeasure()
 {
@@ -205,24 +183,6 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
 			HAL_UART_Transmit_IT(&huart2, announcement, strlen(announcement));
 			memset(RxBuf, 0, RxBuf_SIZE);
 		}
-//	if(huart->Instance == USART2)
-//	{
-//		uint16_t dl_kom;
-//		if(znak == 'e')
-//		{
-//			dl_kom = sprintf((char *)komunikat, "First data\n");
-//		}
-//		else if(znak == 'd')
-//		{
-//			dl_kom = sprintf((char *)komunikat, "Another data\n");
-//		}
-//		else
-//		{
-//			dl_kom = sprintf((char *)komunikat, "Wrong char\n");
-//		}
-//		HAL_UART_Transmit_IT(&huart2, komunikat, dl_kom);
-//		HAL_UART_Receive_IT(&huart2, &znak, 1);
-//	}
 }
 
 /*
