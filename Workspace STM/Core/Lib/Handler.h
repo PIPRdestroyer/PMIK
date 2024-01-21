@@ -55,8 +55,6 @@ void singleMode(uint8_t status);
  * @param status Defines which interrupt is now being used (Uart, Buttons, rangefinder or timer)
  */
 void continuousMode(uint8_t status);
-//void cycleBegin(void);
-//void cycleEnd(void);
 
 /**
  * @brief Function that saves measured distance to global variable "Measure" after recieving a signal from interrupt
@@ -77,25 +75,24 @@ void Display(uint16_t measure);
  */
 void saveToMem(uint16_t measure);
 
-
-//     																							#############################opisac
 /**
- * @brief Function displays a uint16_t type number on the 7 segment display.
+ * @brief Function handling GPIO interrupt especially buttons and VL53
  *
- * @param measure Distance returned from range finder
+ * @param GPIO_Pin interrupt pin
  */
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin);
 
 /**
- * @brief Function displays a uint16_t type number on the 7 segment display.
+ * @brief Function handling timers interrupts
  *
- * @param measure Distance returned from range finder
+ * @param *htim instance of timer that call interrupt
  */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim);
 
 /**
- * @brief Function displays a uint16_t type number on the 7 segment display.
+ * @brief Function handling interrupt from UART
  *
- * @param measure Distance returned from range finder
+ * @param *huart instance of huart that call interrupt
+ * @param Size of message
  */
 void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size);

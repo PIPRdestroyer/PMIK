@@ -3,6 +3,7 @@
   ******************************************************************************
   * @file           : main.c
   * @brief          : Main program body
+  * @details        : Program for operating the distance sensor for PMIK
   ******************************************************************************
   * @attention
   *
@@ -14,6 +15,8 @@
   * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
+  *
+  * Created on 21.01.2024
   */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
