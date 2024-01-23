@@ -1,23 +1,56 @@
 /* USER CODE BEGIN Header */
 /**
-  ******************************************************************************
-  * @file           : main.c
-  * @brief          : Main program body
-  * @details        : Program for operating the distance sensor for PMIK
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2023 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  *
-  * Created on 21.01.2024
-  */
+ * \mainpage Laser Range Finder Documentation
+ *
+ * \section intro_sec Introduction
+ *
+ * The project was created on the subject of PMIK edition 2023Z.
+ *
+ * \subsection Description
+ *
+ * The rangefinder has 2 modes of operation continuous mode and single mode.
+ * Changing modes occurs when the button is pressed. In continuous mode,
+ * the display shows the current measurement from the sensor. In single mode,
+ * it displays the last stored value from the EEPROM memory. When it is in
+ * this mode and the button responsible for writing to EEPROM is pressed,
+ * the value will be written and read (so it will also show on the display).
+ *
+ * \section modules_sec List of used modules
+ *
+ * VL54L0X laser distance sensor,
+ * External EEPROM I2C Memory AT24C256,
+ * 8 Bit display module on TM1637 controller,
+ * NUCLEO-F103RB,
+ * 2 NO buttons
+ *
+ * \section function_sec List of functionalities
+ *
+ * Distance measurement from sensor (I2C),
+ * Distance Save measurement to external EEPROM (i2c),
+ * Distance Communication with computer (UART) -Possibility to log measured values to computer,
+ * Distance Display of the current measurement value on an 8-bit seven-segment display,
+ * Distance Push-button selection of scanning mode (continuous/single),
+ * Distance Reading from the external EEPROM to the display using the button,
+ * Distance The device will be powered from the USB port.
+ *
+ ******************************************************************************
+ * @file           : main.c
+ * @brief          : Main program body
+ * @details        : Program for operating the distance sensor for PMIK
+ ******************************************************************************
+ * @attention
+ *
+ * Copyright (c) 2023 STMicroelectronics.
+ * All rights reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
+ *
+ * Created on 21.01.2024
+ */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
